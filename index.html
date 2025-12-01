@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        body {
+            background: whitesmoke;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #90caf9;
+            text-align: center;
+        }
+
+        input {
+            width: 170px;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 6px;
+            border: 1px solid lightskyblue;
+            background: white;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100px;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background: blue;
+            color: white;
+            font-size: 16px;
+            cursor: crosshair;
+            margin-top: 10px;
+        }
+
+        #output {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid lightblue;
+            text-align: left;
+            width: 240px;
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+
+<label> <input type="number" id="a"></label><br>
+<label> <input type="number" id="b"></label><br>
+<label> <input type="number" id="c"></label><br>
+<label> <input type="number" id="d"></label><br>
+<label> (prime) too: <input type="number" id="n"></label><br><br>
+
+<button onclick="runTasks()">Go</button>
+
+<pre id="output"></pre>
+
+</div>
+
+<script>
+function runTasks() {
+    let aVal = document.getElementById("a").value;
+    let bVal = document.getElementById("b").value;
+    let cVal = document.getElementById("c").value;
+    let dVal = document.getElementById("d").value;
+    let nVal = document.getElementById("n").value;
+
+    if (aVal === "" || bVal === "" || cVal === "" || dVal === "" || nVal === "") {
+        alert("toogoo orulach medrel ymu");
+        return;
+    }
+
+    let a = Number(aVal);
+    let b = Number(bVal);
+    let c = Number(cVal);
+    let d = Number(dVal);
+    let n = Number(nVal);
+
+    let out = "";
+
+    let smallest = Math.min(a, b, c, d);
+    out += "Task 1: Baga = " + smallest + "\n";
+
+    let s = 0;
+    for (let i = 1; i <= 10; i++) {
+        if (i % 2 === 0) s += i;
+    }
+    out += "Task 2: " + s + "\n";
+
+    out += "Task 3:\n";
+    for (let i = 1; i <= 20; i++) {
+        if (i % 2 === 1) out += i + "\n";
+    }
+
+    let prime = true;
+    if (n <= 1) {
+        prime = false;
+    } else {
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i === 0) {
+                prime = false;
+                break;
+            }
+        }
+    }
+    out += "Task 4: " + (prime ? "tiim" : "gu") + "\n";
+
+    document.getElementById("a").value = "";
+    document.getElementById("b").value = "";
+    document.getElementById("c").value = "";
+    document.getElementById("d").value = "";
+    document.getElementById("n").value = "";
+
+    document.getElementById("output").textContent = out;
+}
+</script>
+
+</body>
+</html>
